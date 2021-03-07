@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useHistory } from "react-router-dom";
 
 import Loading from "../components/Loading";
 import Error from "../pages/Error";
@@ -11,6 +11,8 @@ const SingleIngredient = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
     const [ingredient, setIngredient] = useState(null);
+
+    const history = useHistory();
 
     const fetchData = async () => {
         setLoading(true);
@@ -65,6 +67,9 @@ const SingleIngredient = () => {
     const { id, name, description } = ingredient;
     return (
         <main className="page single-ingredient-page">
+            <button className="btn back-btn" onClick={() => history.goBack()}>
+                Back
+            </button>
             <div className="single-ingredient-container">
                 <div className="ingredient-title">{name}</div>
                 <div className="ingredient-desc">

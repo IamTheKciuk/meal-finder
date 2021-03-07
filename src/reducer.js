@@ -11,6 +11,10 @@ const reducer = (state, action) => {
         return { ...state, searchTerm: action.payload };
     }
 
+    if (action.type === "SET_CATEGORY_NAME") {
+        return { ...state, category: action.payload };
+    }
+
     if (action.type === "SHOW_MODAL") {
         return {
             ...state,

@@ -3,12 +3,13 @@ import reducer from "./reducer";
 
 const AppContext = React.createContext();
 
-const url = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
+let url = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
 
 const initialState = {
     loading: true,
     meals: [],
-    searchTerm: "a",
+    searchTerm: "",
+    category: "",
     modal: { show: false, content: "" },
 };
 
@@ -18,26 +19,56 @@ const AppProvider = ({ children }) => {
     // fetch data
     const fetchData = async () => {
         dispatch({ type: "LOADING" });
+
+        if (state.category) {
+            url = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${state.category}`;
+        } else {
+            url = `https://www.themealdb.com/api/json/v1/1/search.php?s=`;
+        }
+
         try {
-            const response = await fetch(`${url}${state.searchTerm}`);
+            let response;
+
+            // choose url depending on search form terms
+            if (state.category) {
+                response = await fetch(`${url}`);
+            } else {
+                response = await fetch(`${url}${state.searchTerm}`);
+            }
             const data = await response.json();
             const { meals } = data;
 
             // if meals fetched set new object with new keys
             if (meals) {
-                const newMeals = meals.map((meal) => {
-                    const {
+                let newMeals = meals.map((meal) => {
+                    let {
                         idMeal: id,
                         strMeal: name,
-                        strArea: cuisine,
                         strCategory: category,
                         strMealThumb: image,
                     } = meal;
 
-                    return { id, name, cuisine, category, image };
+                    // if category is chosen in search form - show searched category under meal name
+                    if (state.category) category = state.category;
+
+                    return { id, name, category, image };
                 });
+
+                // sorting meals by name if category choosen
+                let newMealsSorted = newMeals.filter((item) => {
+                    return (
+                        item.name
+                            .toLowerCase()
+                            .indexOf(state.searchTerm.toLowerCase()) > -1
+                    );
+                });
+
                 // if fetch complete and not empty set meals at newMeals
-                dispatch({ type: "SET_MEALS", payload: newMeals });
+                if (state.category) {
+                    dispatch({ type: "SET_MEALS", payload: newMealsSorted });
+                } else {
+                    dispatch({ type: "SET_MEALS", payload: newMeals });
+                }
             } else {
                 // if nothing fetched set meals at empty array
                 dispatch({ type: "SET_MEALS", payload: [] });
@@ -52,6 +83,11 @@ const AppProvider = ({ children }) => {
         dispatch({ type: "SET_SEARCH_TERM", payload: searchTerm });
     };
 
+    // handle category change
+    const setCategory = (categoryName) => {
+        dispatch({ type: "SET_CATEGORY_NAME", payload: categoryName });
+    };
+
     // show/hide modal with big image of meal
     const showModal = (show = false, image = "") => {
         dispatch({ type: "SHOW_MODAL", payload: { show, image } });
@@ -60,7 +96,7 @@ const AppProvider = ({ children }) => {
     // fetching data with each search term change
     useEffect(() => {
         fetchData();
-    }, [state.searchTerm]);
+    }, [state.searchTerm, state.category]);
 
     // =================== RETURN ====================
     return (
@@ -69,6 +105,7 @@ const AppProvider = ({ children }) => {
                 ...state,
                 setSearchTerm,
                 showModal,
+                setCategory,
             }}
         >
             {children}

@@ -10,7 +10,7 @@ const Home = () => {
 
                 <Link to="/search">
                     <button className="btn-home">
-                        <p className="btn-text">See for yourself </p>
+                        <p className="btn-text">search for meals </p>
                         <p className="icon">
                             <FaChevronRight />
                         </p>

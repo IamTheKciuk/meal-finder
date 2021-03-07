@@ -20,7 +20,7 @@ const MealList = () => {
     return (
         <section className="section meals-section">
             {meals.map((meal) => {
-                const { id, name, cuisine, category, image } = meal;
+                const { id, name, category, image } = meal;
                 return (
                     <article key={id} className="meal-card">
                         <div
@@ -34,7 +34,6 @@ const MealList = () => {
                         </div>
                         <h3 className="meal-title">{name}</h3>
                         <div className="desc-container">
-                            <p className="cuisine">{cuisine}</p>
                             <p
                                 className="category"
                                 style={{

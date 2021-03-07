@@ -1,11 +1,12 @@
 import React from "react";
 import { useGlobalContext } from "../context";
+import CategoryList from "../components/CategoryList";
 
 const SearchForm = () => {
     const { setSearchTerm } = useGlobalContext();
 
     return (
-        <section className="section search">
+        <section className="section search-section">
             <form
                 className="search-form"
                 onSubmit={(e) => {
@@ -21,6 +22,7 @@ const SearchForm = () => {
                     />
                 </div>
             </form>
+            <CategoryList />
         </section>
     );
 };

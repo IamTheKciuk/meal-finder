@@ -73,6 +73,29 @@ body {
 }
 
 /* 
+============
+Error || LOADING
+============
+*/
+
+.error-page,
+.loading-page {
+    width: 100%;
+    height: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.error-container,
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 
 ==============
 MODAL
 ==============
@@ -149,6 +172,12 @@ BUTTONS
     transform: scale(1.1);
 }
 
+.back-btn {
+    position: absolute;
+    left: 3rem;
+    top: 3rem;
+}
+
 /* 
 ============
 NAVBAR 
@@ -160,6 +189,10 @@ NAVBAR
     height: 100px;
     border-bottom: 4px solid var(--clr-primary-2);
     box-shadow: 1px 3px 10px var(--clr-primary-2);
+}
+
+.menu-icon {
+    display: none;
 }
 
 .nav-center {
@@ -228,6 +261,9 @@ HOMEPAGE
     background-repeat: no-repeat;
     background-size: cover;
     height: calc(100vh - 100px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .home-container {
@@ -269,7 +305,7 @@ HOMEPAGE
 }
 
 .home-container .btn-home .btn-text {
-    font-size: 20px;
+    font-size: 18px;
     width: 60%;
 }
 
@@ -290,9 +326,10 @@ SEARCH
 */
 
 /* search form */
-.search {
+.search-section {
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -322,6 +359,62 @@ SEARCH
     padding: 10px;
     font-size: 1.2rem;
 }
+/* category list */
+
+.category-container-filter {
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 100px);
+    grid-auto-rows: 100px;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.category-card {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 5px black;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: white;
+    text-shadow: 0 0 5px black;
+    overflow: hidden;
+    cursor: pointer;
+}
+.category-card img {
+    height: 100%;
+}
+
+.category-card .opacity-div {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.category-card:hover .opacity-div {
+    background: rgba(0, 0, 0, 0);
+}
+
+.category-card:hover {
+    transform: scale(1.1);
+}
+
+.category-card.chosen .opacity-div {
+    background: rgba(0, 0, 0, 0);
+}
+
+.category-card.chosen p {
+    text-shadow: 0px 0px 4px black;
+}
+
+.category-card p {
+    position: absolute;
+}
+
 /* list display */
 
 .meals-section {
@@ -370,7 +463,7 @@ SEARCH
 }
 
 .meal-card .img-container:hover .zoom-icon {
-    opacity: 50%;
+    opacity: 0.7;
     cursor: pointer;
 }
 
@@ -403,12 +496,6 @@ SINGLE MEAL
 
 .single-meal-page {
     position: relative;
-}
-
-.back-btn {
-    position: absolute;
-    left: 3rem;
-    top: 3rem;
 }
 
 .single-meal-section {
@@ -511,6 +598,7 @@ SINGLE INGREDIENT
 */
 
 .single-ingredient-page {
+    position: relative;
     padding: 0 50px;
     justify-content: center;
 }
@@ -571,7 +659,7 @@ ABOUT
     align-items: center;
     justify-content: space-between;
     width: 70%;
-    height: 700px;
+    min-height: 700px;
     margin-top: 50px;
     background: var(--clr-primary-2);
     border-radius: 20px;
@@ -579,6 +667,7 @@ ABOUT
     color: white;
     text-align: justify;
     box-shadow: 0 0 20px var(--clr-primary-black);
+    margin-bottom: 20px;
 }
 
 .about-title {
@@ -590,12 +679,17 @@ ABOUT
 .about-title .title-desc {
     width: 50%;
     letter-spacing: 1px;
+    font-size: 1rem;
 }
 
 .about-desc {
     display: flex;
+    flex-wrap: wrap;
     width: 80%;
     margin: 30px 0;
+}
+.about-title .title-desc p {
+    font-size: 13px;
 }
 
 .about-desc .column {
@@ -633,23 +727,157 @@ ABOUT
     box-shadow: 0 0 3px rgba(255, 255, 255, 0.404);
 }
 
-/* 
-============
-Error
-============
-*/
-
-.error-page {
-    width: 100%;
-    height: 800px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.about-column-info {
+    font-size: 0.9rem;
 }
 
-.error-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+/* 
+***************************
+MEDIA QUERIES
+***************************
+*/
+
+@media (max-width: 1200px) {
+    .about-page .title-desc {
+        font-size: 0.9rem;
+    }
+
+    .about-desc h4 {
+        font-size: 0.9rem;
+    }
+
+    .about-column-info {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .home-container {
+        width: 80%;
+        height: 70%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .home-container .text {
+        margin-bottom: 30px;
+    }
+
+    .about-section {
+        width: 85%;
+    }
+
+    .about-page .title-desc {
+        font-size: 0.8rem;
+    }
+
+    .about-title .title-desc p {
+        font-size: 11px;
+    }
+
+    .about-desc h4 {
+        font-size: 0.8rem;
+    }
+
+    .about-column-info {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        position: relative;
+    }
+
+    .menu-icon {
+        display: initial;
+        position: absolute;
+        right: 2rem;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 40px;
+        cursor: pointer;
+    }
+
+    .nav-links {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 10%;
+        right: 80px;
+        width: 200px;
+        height: 0;
+        overflow: hidden;
+        background: white;
+        z-index: 10;
+        transition: var(--transition);
+    }
+
+    .nav-links.active {
+        height: 250px;
+        border: 2px solid var(--clr-primary-2);
+        border-radius: 5px;
+    }
+
+    .logo-wrapper {
+        height: 60px;
+    }
+
+    .logo-text {
+        font-size: 30px;
+    }
+
+    .about-page .title-desc {
+        font-size: 0.7rem;
+    }
+
+    .about-title .title-desc p {
+        font-size: 9px;
+    }
+
+    .about-page .column {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .about-column-info {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-wrapper {
+        height: 40px;
+    }
+
+    .logo-text {
+        font-size: 16px;
+    }
+
+    .nav-links a {
+        font-size: 13px;
+    }
+
+    .meals-section {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-gap: 2rem;
+    }
+
+    .about-page .title-desc {
+        font-size: 0.6rem;
+    }
+
+    .about-title .title-desc p {
+        font-size: 6px;
+    }
+
+    .about-desc h4 {
+        font-size: 0.65rem;
+    }
+
+    .about-column-info {
+        font-size: 0.6rem;
+    }
 }
