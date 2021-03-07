@@ -141,15 +141,46 @@ const SingleMeal = () => {
                         {ingredients.map((item, index) => {
                             if (item.ingredient) {
                                 return (
-                                    <p key={index}>
-                                        {item.ingredient}:{" "}
-                                        <span>{item.measure}</span>
-                                    </p>
+                                    <React.Fragment key={index}>
+                                        <p
+                                            className={`ingredients-row ingredient ${
+                                                index % 2 === 0 ? "odd" : "even"
+                                            }`}
+                                        >
+                                            <Link
+                                                className="link"
+                                                to={`/ingredient/${item.ingredient}`}
+                                            >
+                                                {item.ingredient}
+                                            </Link>
+                                        </p>
+                                        <p
+                                            className={`ingredients-row measure ${
+                                                index % 2 === 0 ? "odd" : "even"
+                                            }`}
+                                        >
+                                            {item.measure}
+                                        </p>
+                                    </React.Fragment>
                                 );
                             } else {
                                 return null;
                             }
                         })}
+                    </div>
+                    <div className="category-container">
+                        <p className="cuisine">{cuisine}</p>
+                        <p
+                            className="category"
+                            style={{
+                                background:
+                                    (category === "Vegetarian" && "green") ||
+                                    (category === "Dessert" && "#e102ffa1"),
+                                color: category === "Vegetarian" && "white",
+                            }}
+                        >
+                            {category}
+                        </p>
                     </div>
                 </div>
                 <div className="meal-description">

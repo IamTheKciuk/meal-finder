@@ -22,6 +22,8 @@ const AppProvider = ({ children }) => {
             const response = await fetch(`${url}${state.searchTerm}`);
             const data = await response.json();
             const { meals } = data;
+
+            // if meals fetched set new object with new keys
             if (meals) {
                 const newMeals = meals.map((meal) => {
                     const {
@@ -60,6 +62,7 @@ const AppProvider = ({ children }) => {
         fetchData();
     }, [state.searchTerm]);
 
+    // =================== RETURN ====================
     return (
         <AppContext.Provider
             value={{
@@ -72,7 +75,7 @@ const AppProvider = ({ children }) => {
         </AppContext.Provider>
     );
 };
-// make sure use
+
 export const useGlobalContext = () => {
     return useContext(AppContext);
 };

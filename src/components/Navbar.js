@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../logo.png";
+import logo from "../images/logo.png";
 
 const Navbar = () => {
     return (
@@ -9,6 +9,9 @@ const Navbar = () => {
                 <Link to="/">
                     <div className="logo-wrapper">
                         <img src={logo} alt="The Onion Logo" className="logo" />
+                        <span className="logo-text">
+                            the <span className="onion">ONION</span>
+                        </span>
                     </div>
                 </Link>
                 <ul className="nav-links">
