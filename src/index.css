@@ -260,7 +260,7 @@ HOMEPAGE
         url("./images/home-photo.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    height: calc(100vh - 100px);
+    min-height: calc(100vh - 100px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -298,6 +298,7 @@ HOMEPAGE
     width: 240px;
     height: 65px;
     transition: var(--transition);
+    margin-bottom: 20px;
 }
 
 .home-container .btn-home:hover {
