@@ -3,16 +3,19 @@ import { useParams, Link } from "react-router-dom";
 
 // components
 import Loading from "../components/Loading";
+import Error from "../pages/Error";
 
 const url = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=";
 
 const SingleMeal = () => {
     const { id } = useParams();
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
     const [meal, setMeal] = useState(null);
 
     const fetchData = async () => {
         setLoading(true);
+        setError(false);
 
         try {
             const response = await fetch(`${url}${id}`);
@@ -106,11 +109,12 @@ const SingleMeal = () => {
             } else {
                 // if no fetched data
                 setMeal(null);
+                setError(true);
             }
             setLoading(false);
         } catch (error) {
             // if error
-            console.log(error);
+            setError(true);
             setLoading(false);
         }
     };
@@ -121,6 +125,10 @@ const SingleMeal = () => {
 
     if (loading) {
         return <Loading />;
+    }
+
+    if (error) {
+        return <Error />;
     }
 
     const { name, image, cuisine, category, instructions, ingredients } = meal;

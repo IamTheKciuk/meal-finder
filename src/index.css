@@ -173,9 +173,12 @@ BUTTONS
 }
 
 .back-btn {
-    position: absolute;
-    left: 3rem;
-    top: 3rem;
+    /* position: absolute; */
+    /* left: 3rem; */
+    /* top: 3rem; */
+    align-self: flex-start;
+    margin-top: 20px;
+    margin-left: 20px;
 }
 
 /* 
@@ -600,8 +603,8 @@ SINGLE INGREDIENT
 
 .single-ingredient-page {
     position: relative;
-    padding: 0 50px;
-    justify-content: center;
+    justify-content: flex-start;
+    justify-content: initial;
 }
 
 .single-ingredient-container {
@@ -610,6 +613,8 @@ SINGLE INGREDIENT
     grid-template-columns: 3fr 5fr;
     grid-template-rows: 100px auto;
     column-gap: 1rem;
+    margin-top: 40px;
+    padding: 0 50px;
 }
 
 .ingredient-title {

@@ -4,8 +4,15 @@ import MealList from "../components/MealList";
 import SearchForm from "../components/SearchForm";
 import Modal from "../components/Modal";
 
+// pages
+import Error from "../pages/Error";
+
 const Search = () => {
-    const { modal } = useGlobalContext();
+    const { modal, error } = useGlobalContext();
+
+    if (error) {
+        return <Error />;
+    }
 
     return (
         <main className="page search-page">

@@ -9,7 +9,7 @@ const About = () => {
             <section className="about-section">
                 <div className="about-title">
                     <h1>About</h1>
-                    <p className="title-desc">
+                    <div className="title-desc">
                         The ONION is an web application for searching meal
                         recipes. You can write what are you looking for in the
                         search tab and/or choose category. All recipes have an
@@ -25,7 +25,7 @@ const About = () => {
                             *this app works much better on big screens - not all
                             pages are responsive at this moment
                         </p>
-                    </p>
+                    </div>
                     {/* TODO: logo - onion - on the right side of "About" */}
                 </div>
                 <div className="about-desc">
@@ -37,7 +37,11 @@ const About = () => {
                         <p className="about-column-info">
                             This project is created by Karol Kwit, beginner
                             frontend developer. Contact me at:
-                            <a href="http://www.mrkwit.pl" target="_blank">
+                            <a
+                                href="http://www.mrkwit.pl"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
                                 {" "}
                                 mrkwit.pl
                             </a>
@@ -51,7 +55,11 @@ const About = () => {
                         <p className="about-column-info">
                             The ONION is using an restful API to get recipes and
                             other data. The API site is:{" "}
-                            <a href="https://www.themealdb.com" target="_blank">
+                            <a
+                                href="https://www.themealdb.com"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
                                 themealdb.com{" "}
                             </a>
                         </p>

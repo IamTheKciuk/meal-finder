@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link, useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
 import Loading from "../components/Loading";
 import Error from "../pages/Error";
@@ -67,9 +67,9 @@ const SingleIngredient = () => {
     const { id, name, description } = ingredient;
     return (
         <main className="page single-ingredient-page">
-            <button className="btn back-btn" onClick={() => history.goBack()}>
+            <a className="btn back-btn" onClick={() => history.goBack()}>
                 Back
-            </button>
+            </a>
             <div className="single-ingredient-container">
                 <div className="ingredient-title">{name}</div>
                 <div className="ingredient-desc">

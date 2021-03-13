@@ -3,7 +3,7 @@ import { useGlobalContext } from "../context";
 import CategoryList from "../components/CategoryList";
 
 const SearchForm = () => {
-    const { setSearchTerm } = useGlobalContext();
+    const { loading, setSearchTerm } = useGlobalContext();
 
     return (
         <section className="section search-section">
@@ -22,7 +22,7 @@ const SearchForm = () => {
                     />
                 </div>
             </form>
-            <CategoryList />
+            {<CategoryList />}
         </section>
     );
 };

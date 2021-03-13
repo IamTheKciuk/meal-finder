@@ -7,6 +7,7 @@ let url = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
 
 const initialState = {
     loading: true,
+    error: false,
     meals: [],
     searchTerm: "",
     category: "",
@@ -18,7 +19,8 @@ const AppProvider = ({ children }) => {
 
     // fetch data
     const fetchData = async () => {
-        dispatch({ type: "LOADING" });
+        dispatch({ type: "LOADING", payload: true });
+        dispatch({ type: "SET_ERROR", payload: false });
 
         if (state.category) {
             url = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${state.category}`;
@@ -73,8 +75,11 @@ const AppProvider = ({ children }) => {
                 // if nothing fetched set meals at empty array
                 dispatch({ type: "SET_MEALS", payload: [] });
             }
+
+            dispatch({ type: "LOADING", payload: false });
         } catch (error) {
-            console.log(error);
+            dispatch({ type: "SET_ERROR", payload: true });
+            dispatch({ type: "LOADING", payload: false });
         }
     };
 

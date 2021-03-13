@@ -1,10 +1,14 @@
 const reducer = (state, action) => {
     if (action.type === "LOADING") {
-        return { ...state, loading: true };
+        return { ...state, loading: action.payload };
+    }
+
+    if (action.type === "SET_ERROR") {
+        return { ...state, error: action.payload };
     }
 
     if (action.type === "SET_MEALS") {
-        return { ...state, loading: false, meals: action.payload };
+        return { ...state, meals: action.payload };
     }
 
     if (action.type === "SET_SEARCH_TERM") {

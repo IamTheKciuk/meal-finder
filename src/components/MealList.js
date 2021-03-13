@@ -14,7 +14,7 @@ const MealList = () => {
     }
 
     if (meals.length < 1) {
-        return <div>NO MEALS for this term</div>;
+        return <div>There is no meals found for this Search Term</div>;
     }
 
     return (
